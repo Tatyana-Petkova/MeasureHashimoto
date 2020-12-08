@@ -1,0 +1,23 @@
+{% extends 'measure_app/main.html' %}
+
+{% block content %}
+{% block styles %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+
+
+<div class="container">
+    <form class="w-75 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; padding: 5% 5%;" action="{% url 'login_user' %}">
+      <h2>Login</h2>
+        {{ form }}
+        {% csrf_token %}
+        <p></p>
+        <div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <span>You don't have an account?<a href="{% url 'register' %}" style="color:orange">Sign up here</a></span>
+
+    </form>
+</div>
+{% endblock %}
