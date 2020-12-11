@@ -1,10 +1,12 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from users.forms.login_form import LoginForm
 from users.forms.register_form import RegisterForm
-from users.models import UserProfile
+from users.models import *
 
 
 def register(request):
@@ -17,7 +19,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            profile = UserProfile(
+            profile = RegisteredUser(
                 user=user,
             )
             profile.save()
@@ -44,9 +46,25 @@ def login_user(request):
 
             if user:
                 login(request, user)
-                return redirect('index')
+                return redirect('/')
         context = {
             'form': form,
         }
 
         return render(request, 'users/login.html', context)
+
+
+def profile_page(request, pk):
+    results_type = Results.objects.all()
+    user = User.objects.get(pk=pk)
+
+    context = {'results_type': results_type, 'user': user}
+
+    return render(request, 'users/profile_page.html', context)
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+

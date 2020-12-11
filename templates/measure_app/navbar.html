@@ -13,10 +13,25 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'library' %}">Library</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'login_user' %}">Login</a>
-      </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile_page' user.id %}">
+                        {{ user.username }}'s profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login_user' %}">Sign in</a>
+                </li>
+            {% endif %}
     </ul>
 
   </div>
+
+
+
 </nav>

@@ -1,0 +1,36 @@
+{% extends 'measure_app/main.html' %}
+
+{% block content %}
+    <br>
+
+    <h1 style="color: lightgrey; text-align: center">Здравейте, {{user.username}}!</h1>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table">
+
+                        <tr>
+                            <th>TYPE</th>
+                            <th>VALUE</th>
+                            <th>DATE</th>
+                            <th>EDIT</th>
+                            <th>DELETE</th>
+                        </tr>
+
+                    {% for type in results_type %}
+                            <tr>
+                                <td>{{ type.results_type }}</td>
+                                <td>{{ type.results_type }}</td>
+                                <td>{{ type.results_type }}</td>
+                                <td><a href="">Edit</a></td>
+                                <td><a href="">Delete</a></td>
+                            </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
