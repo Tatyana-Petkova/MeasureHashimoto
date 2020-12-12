@@ -3,6 +3,7 @@
 {% block content %}
     <br>
 
+    <span>Add results <a href="{% url 'add_results' %}" style="color:dodgerblue">here</a></span>
 
 
     <div class="row">
@@ -11,22 +12,28 @@
                 <table class="table">
 
                         <tr>
-                            <th>TYPE</th>
-                            <th>VALUE</th>
-                            <th>DATE</th>
-                            <th>EDIT</th>
-                            <th>DELETE</th>
+                            <th>date</th>
+                            <th>FT3</th>
+                            <th>FT4</th>
+                            <th>TSH</th>
+                            <th>MAT</th>
+                            <th>TAT</th>
+                            <th>edit</th>
+                            <th>delete</th>
                         </tr>
 
-                    {% for type in results_type %}
+                        {% for result in results_bulk %}
                             <tr>
-                                <td>{{ type.results_type }}</td>
-                                <td>{{ imported_all }}</td>
-                                <td>date</td>
-                                <td><a href="">Edit</a></td>
-                                <td><a href="">Delete</a></td>
+                                <td>{{ result.date_created }}</td>
+                                <td>{{ result.ft3 }}</td>
+                                <td>{{ result.ft4 }}</td>
+                                <td>{{ result.tsh }}</td>
+                                <td>{{ result.mat }}</td>
+                                <td>{{ result.tat }}</td>
+                                <td><a class="btn btn-sm btn-info" href="{%  url 'edit_results' result.id %}">Edit</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="{%  url 'delete_results' result.id %}">Delete</a></td>
                             </tr>
-                    {% endfor %}
+                        {% endfor %}
 
                 </table>
             </div>

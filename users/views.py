@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from users.forms.login_form import LoginForm
 from users.forms.register_form import RegisterForm
+from users.forms.results_form import ResultsForm
 from users.models import *
 
 
@@ -55,11 +56,10 @@ def login_user(request):
 
 
 def profile_page(request, pk):
-    results_type = Results.objects.all()
     user = User.objects.get(id=pk)
-    imported_all = ImportedResults.objects.all().first()
+    results_bulk = user.registereduser.results_set.all()
 
-    context = {'results_type': results_type, 'user': user, 'imported_all': imported_all}
+    context = {'user': user, 'results_bulk': results_bulk}
 
     return render(request, 'users/profile_page.html', context)
 
@@ -68,4 +68,60 @@ def profile_page(request, pk):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+
+@login_required
+def add_results(request):
+    if request.method == 'GET':
+        form = ResultsForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'users/add_results.html', context)
+    else:
+
+        form = ResultsForm(request.POST)
+        if form.is_valid():
+            results = form.save(commit=False)
+            results.user = RegisteredUser.objects.get(user=request.user)
+            results.save()
+            return redirect('/')
+        else:
+            context = {
+                'form': form,
+            }
+            return render(request, 'users/add_results.html', context)
+
+
+@login_required
+def edit_results(request, pk):
+    results_bulk = Results.objects.get(id=pk)
+    if request.method == "GET":
+        form = ResultsForm(instance=results_bulk)
+        context = {'form': form, 'results_bulk': results_bulk}
+
+        return render(request, 'users/edit_results.html', context)
+    else:
+        form = ResultsForm(request.POST, instance=results_bulk)
+        if form.is_valid():
+            form.save()
+            return redirect('/', results_bulk.pk)
+        else:
+            context = {'form': form, 'results_bulk': results_bulk}
+            return render(request, 'users/edit_results.html', context)
+
+
+@login_required
+def delete_results(request, pk):
+    results_to_delete = Results.objects.get(id=pk)
+    if request.method == 'GET':
+        context = {'results_to_delete': results_to_delete}
+
+        return render(request, 'users/delete_results.html', context)
+
+    else:
+        results_to_delete.delete()
+        return redirect('/')
+
+
 

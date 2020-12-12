@@ -1,0 +1,28 @@
+{% extends 'measure_app/main.html' %}
+
+{% block content %}
+{% block styles %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+
+    body{background-color: #535454;}
+    </style>
+{% endblock %}
+
+    <br>
+
+<div class="container">
+    <form class="w-50 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; background-color: lightgrey; padding: 5% 5%;" action="{% url 'add_results' %}">
+      <h2>Add new results</h2>
+        {{ form }}
+        {% csrf_token %}
+        <p></p>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+
+    </form>
+</div>
+{% endblock %}

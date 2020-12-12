@@ -6,4 +6,3 @@ from .models import *
 
 admin.site.register(RegisteredUser)
 admin.site.register(Results)
-admin.site.register(ImportedResults)
