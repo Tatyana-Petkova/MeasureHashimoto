@@ -1,7 +1,59 @@
 {% extends 'measure_app/main.html' %}
+{% load static %}
 
 {% block content %}
 
-    <p>Library test</p>
+    <h5 style="color: lightgrey; text-align: center">В библиотеката ще намерите най-известните книги и сайтове:</h5>
+
+    <div class="card-deck">
+  <div class="card">
+    <img width="150" height="250" src="{% static 'images/root_cause.png' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Първопричината</h5>
+
+      <p class="card-text" style="color: black;">Изабела Уенц, доктор по фармация, FASCP, пациент с Хашимото и пионер в областта на
+          промените в начина на живот, необходими при тиреоидит на Хашимото.
+      </p>
+
+    </div>
+    <div class="card-footer">
+      <small class="">виж книгата и сайта на автора <a href="https://thyroidpharmacist.com/book/" style="color:darkblue">тук</a></small>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <img width="150" height="250" src="{% static 'images/protokol_book.png' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Протоколът Хашимото</h5>
+
+      <p class="card-text" style="color: black;">Болестта на Хашимото доказва в епидемични размери, че телата ни искат от нас да променим начина си
+          на живот. Книгата е снована на задълбочени проучвания, ясно поднесена и пълна с полезна информация.
+      </p>
+
+    </div>
+    <div class="card-footer">
+      <small class="">виж книгата и сайта на автора <a href="https://thyroidpharmacist.com/protocol/" style="color:darkblue">тук</a></small>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <img width="150" height="250" src="{% static 'images/food_pharma.png' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Хранителна фармакология</h5>
+
+      <p class="card-text" style="color: black;">Една готварска книга, написана за хора, които не са специалисти по хранене (нутрициолози),
+          нито са шеф-готвачи. Тя е предназначена за хората, които са готови да поемат отговорност за собственото си здраве.
+      </p>
+
+    </div>
+    <div class="card-footer">
+      <small class="">виж книгата и сайта на автора <a href="https://thyroidpharmacist.com/cookbook/" style="color:darkblue">тук</a></small>
+    </div>
+  </div>
+
+
+</div>
 
 {% endblock %}

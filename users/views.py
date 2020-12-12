@@ -56,9 +56,10 @@ def login_user(request):
 
 def profile_page(request, pk):
     results_type = Results.objects.all()
-    user = User.objects.get(pk=pk)
+    user = User.objects.get(id=pk)
+    imported_all = ImportedResults.objects.all().first()
 
-    context = {'results_type': results_type, 'user': user}
+    context = {'results_type': results_type, 'user': user, 'imported_all': imported_all}
 
     return render(request, 'users/profile_page.html', context)
 

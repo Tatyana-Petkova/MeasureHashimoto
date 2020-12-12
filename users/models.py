@@ -23,5 +23,6 @@ class ImportedResults(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f'{self.user} - {self.results} - {self.result_value} - {self.date_created}'
+        #return f'{self.user} - {self.results} - {self.result_value} - {self.date_created}'
+        return f'{self.results} - {self.result_value}'
 
