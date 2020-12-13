@@ -11,21 +11,21 @@
         <a class="nav-link" href="{% url 'home' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'library' %}">Library</a>
+        <a class="nav-link" href="{% url 'library' %}">Библиотека</a>
       </li>
 
             {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile_page' user.id %}">
-                        {{ user.username }}'s profile
+                        Профилът на {{ user.username }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Изход</a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login_user' %}">Sign in</a>
+                    <a class="nav-link" href="{% url 'login_user' %}">Вход</a>
                 </li>
             {% endif %}
     </ul>

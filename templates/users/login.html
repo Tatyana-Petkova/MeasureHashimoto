@@ -13,15 +13,15 @@
     <br>
 
 <div class="container">
-    <form class="w-25 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; background-color: lightgrey; padding: 5% 5%;" action="{% url 'login_user' %}">
-      <h2>Sign in</h2>
+    <form class="w-75 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; background-color: lightgrey; padding: 5% 5%;" action="{% url 'login_user' %}">
+      <h2>Влезте в профила си:</h2>
         {{ form }}
         {% csrf_token %}
         <p></p>
         <div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Влез</button>
         </div>
-        <span>You don't have an account? <a href="{% url 'register' %}" style="color:dodgerblue">Sign up here</a></span>
+        <span>Нямате профил? <a href="{% url 'register' %}" style="color:dodgerblue">Регистрирайте се</a></span>
 
     </form>
 </div>

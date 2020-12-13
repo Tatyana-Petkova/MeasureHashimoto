@@ -3,23 +3,31 @@
 {% block content %}
     <br>
 
-    <span>Add results <a href="{% url 'add_results' %}" style="color:dodgerblue">here</a></span>
+    <h2 style="color: lightgrey; text-align: center">Здравейте, {{ user }}!</h2>
 
+    <br>
 
-    <div class="row">
-        <div class="col-md">
-            <div class="card card-body">
+    <h5 style="color: lightgrey; text-align: center">Това е Вашата профилна страница. Тук можете да съхранявате резултатите от изследванията си:</h5>
+
+    <h5 style="color: lightgrey; text-align: center"><span>Въведете резултатите си <strong><a href="{% url 'add_results' %}" style="color:dodgerblue">тук</a></strong></span></h5>
+
+    <br>
+
+    <div class="row" id="results-table">
+
+        <div class="col-md" >
+            <div class="card card-body" style="background-color: lightgrey">
                 <table class="table">
 
                         <tr>
-                            <th>date</th>
+                            <th>дата</th>
                             <th>FT3</th>
                             <th>FT4</th>
                             <th>TSH</th>
                             <th>MAT</th>
                             <th>TAT</th>
-                            <th>edit</th>
-                            <th>delete</th>
+                            <th>промени</th>
+                            <th>изтрий</th>
                         </tr>
 
                         {% for result in results_bulk %}
@@ -30,8 +38,8 @@
                                 <td>{{ result.tsh }}</td>
                                 <td>{{ result.mat }}</td>
                                 <td>{{ result.tat }}</td>
-                                <td><a class="btn btn-sm btn-info" href="{%  url 'edit_results' result.id %}">Edit</a></td>
-                                <td><a class="btn btn-sm btn-danger" href="{%  url 'delete_results' result.id %}">Delete</a></td>
+                                <td><a class="btn btn-sm btn-info" href="{%  url 'edit_results' result.id %}">Промени</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="{%  url 'delete_results' result.id %}">Изтрий</a></td>
                             </tr>
                         {% endfor %}
 

@@ -5,14 +5,14 @@
     <br>
     <div class="row">
         <div class="col-md-6">
-            <div class="card card-body">
+            <div class="card card-body" style="background-color: lightgrey">
 
-                <p>Are you sure you want to delete "{{ results_to_delete }}"?</p>
+                <p style="color: black">Сигурни ли сте, че искате да изтриете резултатите?</p>
 
                 <form action="{% url 'delete_results' results_to_delete.id %}" method="POST">
 
                     {% csrf_token %}
-                    <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+                    <a class="btn btn-warning" href="{% url 'home' %}">Отмени</a>
 
                      <input class="btn btn-danger" type="submit" name="Confirm">
                 </form>

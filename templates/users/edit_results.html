@@ -14,12 +14,12 @@
 
 <div class="container">
     <form class="w-50 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%; background-color: lightgrey; padding: 5% 5%;" action="{% url 'edit_results' results_bulk.id %}">
-      <h2>Edit your results</h2>
+      <h2>Променете резултатите:</h2>
         {{ form }}
         {% csrf_token %}
         <p></p>
         <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Промени</button>
         </div>
 
 
