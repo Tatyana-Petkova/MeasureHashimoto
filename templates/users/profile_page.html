@@ -7,17 +7,23 @@
 
     <br>
 
-    <h5 style="color: lightgrey; text-align: center">Това е Вашата профилна страница. Тук можете да съхранявате резултатите от изследванията си:</h5>
+    <h5 style="color: lightgrey; text-align: center">Това е Вашата профилна страница. Тук можете да съхранявате резултатите от изследванията си.</h5>
+
 
     <h5 style="color: lightgrey; text-align: center"><span>Въведете резултатите си <strong><a href="{% url 'add_results' %}" style="color:dodgerblue">тук</a></strong></span></h5>
 
     <br>
 
+    <p style="text-align: center"><small><strong><a style="color: red">червено</a></strong> - резултатът е извън референтните граници на лабораторията;
+    <strong><a style="color: orange">оранжево</a></strong> - резултатът не е в оптималните нива, въпреки че попада
+        в референтните граници на лабораторията.</small></p>
+
+
     <div class="row" id="results-table">
 
-        <div class="col-md" >
+        <div class="col-md-inline-flex" >
             <div class="card card-body" style="background-color: lightgrey">
-                <table class="table">
+                <table class="table table-hover table-sm">
 
                         <tr>
                             <th>дата</th>
@@ -33,11 +39,28 @@
                         {% for result in results_bulk %}
                             <tr>
                                 <td>{{ result.date_created }}</td>
-                                <td>{{ result.ft3 }}</td>
-                                <td>{{ result.ft4 }}</td>
-                                <td>{{ result.tsh }}</td>
-                                <td>{{ result.mat }}</td>
-                                <td>{{ result.tat }}</td>
+
+                                <td style="color:{% if result.ft3 >= 6.8 or result.ft3 <= 3.2 %}red
+                                                    {% elif  result.ft3 < 5.6 and result.ft3 > 3.2 %}orange
+                                                    {% endif %}"><strong>{{ result.ft3 }}</strong></td>
+
+                                <td style="color:{% if result.ft4 >= 22 or result.ft4 <= 12 %}red
+                                                    {% elif  result.ft4 < 18.67 and result.ft4 > 12 %}orange
+                                                    {% endif %}"><strong>{{ result.ft4 }}</strong></td>
+
+                                <td style="color:{% if result.tsh >= 4.2 or result.tsh <= 0.3 %}red
+                                                    {% elif  result.tsh < 1 and result.tsh > 0.3 %}orange
+                                                    {% elif  result.tsh < 4.2 and result.tsh > 2 %}orange
+                                                    {% endif %}"><strong>{{ result.tsh }}</strong></td>
+
+                                <td style="color:{% if result.mat >= 34 %}red
+                                                    {% elif result.mat > 0 %}orange
+                                                    {% endif %}"><strong>{{ result.mat }}</strong></td>
+
+                                <td style="color:{% if result.tat >= 115 %}red
+                                                    {% elif result.tat > 0 %}orange
+                                                    {% endif %}"><strong>{{ result.tat }}</strong></td>
+
                                 <td><a class="btn btn-sm btn-info" href="{%  url 'edit_results' result.id %}">Промени</a></td>
                                 <td><a class="btn btn-sm btn-danger" href="{%  url 'delete_results' result.id %}">Изтрий</a></td>
                             </tr>
